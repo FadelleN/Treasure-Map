@@ -1,34 +1,34 @@
 package org.treasure_map.object;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class GameTest {
-
-    private final Game game = new Game();
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @Test
     void testInitializeGameWithValidFile() {
+        Game game = new Game();
+
         File file = new File("C:\\Users\\Orion\\IdeaProjects\\Treasure-Map\\src\\main\\resources\\testFile.txt");
 
         List<String> linesFromFile = game.getLinesFromFile(file);
 
-        assert(linesFromFile.size() == 4);
-        assert(linesFromFile.getFirst().equals("first line"));
-        assert(linesFromFile.get(1).isEmpty());
-        assert(linesFromFile.get(2).equals("second line"));
+        assertThat(linesFromFile).isNotNull();
+        assertThat(linesFromFile).isNotEmpty();
+        assertThat(linesFromFile).hasSize(4);
+        assertThat(linesFromFile.get(0)).isEqualTo("first line");
+        assertThat(linesFromFile.get(1)).isEmpty();
+        assertThat(linesFromFile.get(2)).isEqualTo("second line");
 
     }
 
     @Test
     void testInitializeGameWithWrongExtensionFile() {
+        Game game = new Game();
 
         File file = new File("C:\\Users\\Orion\\IdeaProjects\\Treasure-Map\\src\\main\\resources\\testFile.pdf");
 
@@ -39,9 +39,12 @@ class GameTest {
 
     @Test
     void testInitializeGameWithNoFile() {
+        Game game = new Game();
 
         List<String> linesFromFile = game.getLinesFromFile(null);
 
         assert(linesFromFile.isEmpty());
+
+
     }
 }
