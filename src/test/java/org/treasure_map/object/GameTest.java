@@ -34,7 +34,7 @@ class GameTest {
 
         List<String> linesFromFile = game.getLinesFromFile(file);
 
-        assert(linesFromFile.isEmpty());
+        assertThat(linesFromFile).isEmpty();
     }
 
     @Test
@@ -43,8 +43,6 @@ class GameTest {
 
         List<String> linesFromFile = game.getLinesFromFile(null);
 
-        assert(linesFromFile.isEmpty());
-
-
+        assertThat(linesFromFile).isEmpty();
     }
 }
