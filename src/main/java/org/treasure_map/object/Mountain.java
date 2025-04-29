@@ -2,11 +2,11 @@ package org.treasure_map.object;
 
 import org.treasure_map.utils.Coordinates;
 
-public class Mountains {
+public class Mountain {
 
     private final Coordinates coordinates;
 
-    public Mountains(Coordinates coordinates) {
+    public Mountain(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 

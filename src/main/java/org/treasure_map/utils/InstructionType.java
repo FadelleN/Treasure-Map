@@ -7,7 +7,8 @@ public enum InstructionType {
     CARTE("C"),
     MONTAGNE("M"),
     TRESOR("T"),
-    AVENTURIER("A");
+    AVENTURIER("A"),
+    COMMENTAIRE("#");
 
     private final String typeChar;
 

@@ -23,7 +23,8 @@ public class Game {
             GameMap gameMap = GameMap.initializeMap(linesFile);
 
             if (gameMap != null) {
-                playGame();
+                playGame(gameMap);
+//                writeFile(GameMap.getMapInStringFormat());
             } else {
                 System.out.println("Your file has invalid inputs");
             }
@@ -64,6 +65,10 @@ public class Game {
         return "";
     }
 
-    private void playGame() {
+    private void playGame(GameMap gameMap) {
+        do {
+            gameMap.passTurn();
+            System.out.println("Il reste " + gameMap.turnNumberLeft + " tours");
+        } while (gameMap.turnNumberLeft != 0);
     }
 }

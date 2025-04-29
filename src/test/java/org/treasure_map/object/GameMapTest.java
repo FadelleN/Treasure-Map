@@ -86,4 +86,25 @@ class GameMapTest {
 
         assertThat(gameMap.getItemsNumber()).isEqualTo(expectedItemsNumber);
     }
+
+    static Stream<Arguments> provideFullGameWithAdventurerAndExpectedMapInStringFormat() {
+        return Stream.of(
+                Arguments.of(List.of(
+                        "C - 3 - 4", "M - 1 - 0", "M - 2 - 1", "T - 0 - 3 - 2", "T - 1 - 3 - 3", "A - Lara - 1 - 1 - S - AADADAGGA"),
+                        "C - 3 - 4\nM - 1 - 0\nM - 2 - 1\nT - 1 - 3 - 2\nA - Lara - 0 - 3 - S - 3\n")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideFullGameWithAdventurerAndExpectedMapInStringFormat")
+    void testResultOfMapInStringFormatWithAdventurer(List<String> mapLines, String expectedMapInStringFormat) {
+
+        GameMap gameMap = GameMap.initializeMap(mapLines);
+
+        do {
+            gameMap.passTurn();
+        } while (gameMap.turnNumberLeft != 0);
+
+        assertThat(gameMap.getMapInStringFormat()).isEqualTo(expectedMapInStringFormat);
+    }
 }

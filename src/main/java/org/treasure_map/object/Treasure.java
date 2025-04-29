@@ -5,7 +5,7 @@ import org.treasure_map.utils.Coordinates;
 public class Treasure {
 
     private final Coordinates coordinates;
-    private final int numberOfTreasures;
+    private int numberOfTreasures;
 
     public Treasure(Coordinates coordinates, int numberOfTreasures) {
         this.coordinates = coordinates;
@@ -18,5 +18,9 @@ public class Treasure {
 
     public int getNumberOfTreasures() {
         return numberOfTreasures;
+    }
+
+    public void decreaseNumberOfTreasures() {
+        numberOfTreasures--;
     }
 }
