@@ -20,26 +20,28 @@ public class Game {
         File selectedFile = selectFileWithDialog();
         if (selectedFile != null) {
             List<String> linesFile = getLinesFromFile(selectedFile);
-            GameMap gameMap = initializeMap(linesFile);
-        } else {
-            System.out.println("No file selected.");
-        }
-    }
+            GameMap gameMap = GameMap.initializeMap(linesFile);
 
-    private GameMap initializeMap(List<String> linesFile) {
-        return null;
+            if (gameMap != null) {
+                playGame();
+            } else {
+                System.out.println("Your file has invalid inputs");
+            }
+        } else {
+            System.out.println("No file selected or invalid extension.");
+        }
     }
 
     public File selectFileWithDialog() {
         JFileChooser fileChooser = new JFileChooser();
-        return fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION
+        return fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile() != null && getFileExtension(fileChooser.getSelectedFile()).equals("txt")
                 ? fileChooser.getSelectedFile()
                 : null;
     }
 
     public List<String> getLinesFromFile(File file) {
-        if (file != null && getFileExtension(file).equals("txt")) {
-            List<String> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
+        if (file != null) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
@@ -49,11 +51,8 @@ public class Game {
                 System.err.println("Error on reading file: " + e.getMessage());
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, "Error on reading file: ", e);
             }
-            return lines;
         }
-        else {
-            return new ArrayList<>();
-        }
+        return lines;
     }
 
     public static String getFileExtension(File file) {
@@ -65,4 +64,6 @@ public class Game {
         return "";
     }
 
+    private void playGame() {
+    }
 }

@@ -1,23 +1,19 @@
 package org.treasure_map.object;
 
+import org.treasure_map.utils.Coordinates;
+
 public class Treasure {
 
-    private final int xAxis;
-    private final int yAxis;
+    private final Coordinates coordinates;
     private final int numberOfTreasures;
 
-    public Treasure(int xAxis, int yAxis, int numberOfTreasures) {
-        this.xAxis = xAxis;
-        this.yAxis = yAxis;
+    public Treasure(Coordinates coordinates, int numberOfTreasures) {
+        this.coordinates = coordinates;
         this.numberOfTreasures = numberOfTreasures;
     }
 
-    public int getXAxis() {
-        return xAxis;
-    }
-
-    public int getYAxis() {
-        return yAxis;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     public int getNumberOfTreasures() {

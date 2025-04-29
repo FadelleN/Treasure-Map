@@ -1,20 +1,16 @@
 package org.treasure_map.object;
 
+import org.treasure_map.utils.Coordinates;
+
 public class Mountains {
 
-    private final int xAxis;
-    private final int yAxis;
+    private final Coordinates coordinates;
 
-    public Mountains(int xAxis, int yAxis) {
-        this.xAxis = xAxis;
-        this.yAxis = yAxis;
+    public Mountains(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
-    public int getXAxis() {
-        return xAxis;
-    }
-
-    public int getYAxis() {
-        return yAxis;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 }
