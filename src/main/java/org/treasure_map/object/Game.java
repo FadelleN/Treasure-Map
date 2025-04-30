@@ -7,6 +7,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,7 +27,7 @@ public class Game {
 
             if (gameMap != null) {
                 playGame(gameMap);
-//                writeFile(GameMap.getMapInStringFormat());
+                writeFile(gameMap.getMapInStringFormat());
             } else {
                 System.out.println("Your file has invalid inputs");
             }
@@ -68,7 +71,20 @@ public class Game {
     private void playGame(GameMap gameMap) {
         do {
             gameMap.passTurn();
-            System.out.println("Il reste " + gameMap.turnNumberLeft + " tours");
+            System.out.println(gameMap.turnNumberLeft + " remaining turn");
         } while (gameMap.turnNumberLeft != 0);
+        Adventurer adventurer = gameMap.getAdventurer();
+        System.out.println(adventurer.getPickedUpTreasure() > 0
+                ? "Congrats, " + adventurer.getName() + " found " + adventurer.getPickedUpTreasure() + " treasures !"
+                : "Sorry, " + adventurer.getName() + " didn't find any treasure !");
     }
+
+    public void writeFile(String content) {
+        try {
+            Files.writeString(Path.of("C:\\Users\\Orion\\IdeaProjects\\Treasure-Map\\src\\main\\resources\\resultFile.txt"), content, StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            System.err.println("Error while writing result : " + e.getMessage());
+        }
+    }
+
 }

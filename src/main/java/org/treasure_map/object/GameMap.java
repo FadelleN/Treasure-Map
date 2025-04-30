@@ -20,6 +20,7 @@ public class GameMap {
     private final List<Mountain> mountains;
 
     private final List<Treasure> treasures;
+
     public int turnNumberLeft;
 
     private Adventurer adventurer;
@@ -105,7 +106,7 @@ public class GameMap {
                     Coordinates forwardCoordinates = adventurer.goForward();
                     if (forwardCoordinates != null
                             && isNotOutOfBound(this, forwardCoordinates)
-                            && mountains.stream().map(Mountain::getCoordinates).noneMatch(coordinates -> coordinates.equals(forwardCoordinates))) {
+                            && mountains.stream().map(Mountain::getCoordinates).noneMatch(mountainCoordinates -> mountainCoordinates.getXAxis() == forwardCoordinates.getXAxis() && mountainCoordinates.getYAxis() == forwardCoordinates.getYAxis())) {
                         adventurer.setCoordinates(forwardCoordinates);
                         Optional<Treasure> treasureOptional = treasures.stream().filter(treasure -> treasure.getCoordinates().getXAxis() == forwardCoordinates.getXAxis() && treasure.getCoordinates().getYAxis() == forwardCoordinates.getYAxis()).findFirst();
 
@@ -155,5 +156,9 @@ public class GameMap {
         stringBuilder.append("A - ").append(adventurer.getName()).append(" - ").append(adventurer.getCoordinates().getXAxis()).append(" - ").append(adventurer.getCoordinates().getYAxis()).append(" - ").append(adventurer.getOrientation().getOrientationCharacter()).append(" - ").append(adventurer.getPickedUpTreasure()).append("\n");
 
         return stringBuilder.toString();
+    }
+
+    public Adventurer getAdventurer() {
+        return adventurer;
     }
 }

@@ -91,7 +91,10 @@ class GameMapTest {
         return Stream.of(
                 Arguments.of(List.of(
                         "C - 3 - 4", "M - 1 - 0", "M - 2 - 1", "T - 0 - 3 - 2", "T - 1 - 3 - 3", "A - Lara - 1 - 1 - S - AADADAGGA"),
-                        "C - 3 - 4\nM - 1 - 0\nM - 2 - 1\nT - 1 - 3 - 2\nA - Lara - 0 - 3 - S - 3\n")
+                        "C - 3 - 4\nM - 1 - 0\nM - 2 - 1\nT - 1 - 3 - 2\nA - Lara - 0 - 3 - S - 3\n"),
+                Arguments.of(List.of(
+                        "C - 5 - 3", "M - 1 - 0", "M - 3 - 1", "T - 0 - 2 - 1", "T - 4 - 0 - 3", "A - Zoé - 2 - 2 - N - AAGADDAA"),
+                        "C - 5 - 3\nM - 1 - 0\nM - 3 - 1\nT - 0 - 2 - 1\nT - 4 - 0 - 2\nA - Zoé - 4 - 0 - E - 1\n")
         );
     }
 
